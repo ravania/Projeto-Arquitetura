@@ -1,0 +1,15 @@
+/*----> SAIDA <----*/
+module ParallelOUT (input  EN, clk, rst,
+						  input  [7:0] RegData, Address,
+						  output  reg [7:0] DataOUT);
+
+	always (*) begin
+		
+		if((Address == 8'hFF) && EN)
+			DataOUT = RegData;
+		else if (!rst)
+			DataOUT = 8'h00;
+	end
+endmodule
+
+

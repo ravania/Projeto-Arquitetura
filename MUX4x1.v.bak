@@ -1,0 +1,16 @@
+module MUX4x1( input [11:0] inA, inB, inC, inD, 
+					input [1:0]sel,
+					output reg [7:0] OUT
+);
+
+		always @(*)
+		begin
+			case(sel)
+				2'b00: OUT <= inA;
+				2'b01: OUT <= inB;
+				2'b10: OUT <= inC;
+				2'b11: OUT <= inD;
+			endcase
+		end 
+		
+endmodule

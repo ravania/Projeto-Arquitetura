@@ -1,0 +1,24 @@
+
+module Control_Unit (input logic [6:0] OP,
+                     input logic [2:0] Funct3,
+                     input logic [6:0] Funct7,
+                     output logic [2:0] ULAControl,
+                     output logic ULASrc, RegWrite);
+  
+  logic [4:0] saida;
+  
+  always_comb begin
+    casex ({OP, Funct3, Funct7})
+      {7'b0110011, 3'b000, 7'b0000000}: saida = {1'b1, 1'b0, 3'b000}; // ADD
+      {7'b0110011, 3'b000, 7'b0100000}: saida = {1'b1, 1'b0, 3'b001}; // SUB
+      {7'b0110011, 3'b111, 7'b0000000}: saida = {1'b1, 1'b0, 3'b010}; // AND
+      {7'b0110011, 3'b110, 7'b0000000}: saida = {1'b1, 1'b0, 3'b011}; // OR
+      {7'b0110011, 3'b010, 7'b0000000}: saida = {1'b1, 1'b0, 3'b101}; // SLT
+      {7'b0010011, 3'b000, 7'bxxxxxxx}: saida = {1'b1, 1'b1, 3'b000}; // ADDi 
+      default : saida = 5'bxxxxx;
+    endcase
+  	
+  	{RegWrite, ULASrc, ULAControl} = saida;
+    
+  end
+endmodule

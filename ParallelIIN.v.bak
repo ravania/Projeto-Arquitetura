@@ -1,0 +1,12 @@
+/*----> ENTRADA <----*/
+module ParallelIN (input  [7:0] Address, MemData, DataIN,
+						 output reg[7:0] RegData);
+
+	always(*) begin
+		if(Address == 8'hFF)begin
+			1'b0: RegData = MemData;
+			1'b1: RegData = DataIN;
+			default: RegData = 8'b00000000;
+		end
+	end			 
+endmodule

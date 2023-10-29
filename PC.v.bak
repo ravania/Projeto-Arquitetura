@@ -1,0 +1,14 @@
+
+module PC # (SIZE = 8)(input logic clk, rst,
+                       input logic [SIZE-1: 0] PCin,
+                       output logic [SIZE-1:0] PC);
+  
+  always_ff @ (posedge clk or negedge rst) begin
+    if (!rst)
+      PC = 0;
+    else
+      PC = PCin;
+  end
+  
+endmodule
+

@@ -1,0 +1,8 @@
+
+module Adder (input logic [7:0] In01, In02,
+					  output logic [7:0] out);
+	
+	always_comb
+		out = In01 + In02;
+		
+endmodule 
